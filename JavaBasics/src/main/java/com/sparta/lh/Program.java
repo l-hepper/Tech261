@@ -3,17 +3,20 @@ package com.sparta.lh;
 public class Program {
     public static void main(String[] args) {
         int timeOfDay = 21;
-        getGreeting(timeOfDay);
+        System.out.println(getGreeting(timeOfDay));
     }
 
-    private static void getGreeting(int timeOfDay) {
+    private static String getGreeting(int timeOfDay) {
+        String greeting;
         if (timeOfDay >= 5 && timeOfDay <= 12) {
-            System.out.println("Good morning!");
+            greeting = "Good Morning";
         } else if (timeOfDay >= 12 && timeOfDay <= 18) {
-            System.out.println("Good afternoon!");
+            greeting = "Good Afternoon";
         } else {
-            System.out.println("Good evening!");
+            greeting = "Good Evening";
         }
+
+        return greeting;
     }
 
 }
