@@ -67,10 +67,28 @@ public class ProgramTest {
     }
 
     @Test
-    @DisplayName("Given a time of 0, then the greeting should be 'Good Evening'")
-    public void checkThat0GivesGoodEvening() {
+    @DisplayName("Given a time of 0, then the greeting should be 'Invalid Input'")
+    public void checkThat0GivesInvalidInput() {
         int time = 0;
-        String expectedGreeting = "Good Evening";
+        String expectedGreeting = "Invalid Input";
+        String actualGreeting = Program.getGreeting(time);
+        Assertions.assertEquals(expectedGreeting, actualGreeting);
+    }
+
+    @Test
+    @DisplayName("Given a time of 25, then the greeting should be 'Invalid Input'")
+    public void checkThat25GivesInvalidInput() {
+        int time = 25;
+        String expectedGreeting = "Invalid Input";
+        String actualGreeting = Program.getGreeting(time);
+        Assertions.assertEquals(expectedGreeting, actualGreeting);
+    }
+
+    @Test
+    @DisplayName("Given a time of 24, then the greeting should be 'Invalid Input'")
+    public void checkThat24GivesInvalidInput() {
+        int time = 24;
+        String expectedGreeting = "Invalid Input";
         String actualGreeting = Program.getGreeting(time);
         Assertions.assertEquals(expectedGreeting, actualGreeting);
     }
