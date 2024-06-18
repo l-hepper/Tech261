@@ -60,4 +60,13 @@ public class ArrayOfIntegersToIntTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("Given an array of {}, ArrayOfIntegersToInt.method() should return 0")
+    void givenAnEmptyArrayShouldReturn0() {
+        int[] array = {};
+        int expected = 0;
+        int actual = ArrayOfIntegersToInt.method(array);
+        Assertions.assertEquals(expected, actual);
+    }
+
 }
