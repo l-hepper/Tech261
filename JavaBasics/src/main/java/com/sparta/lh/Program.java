@@ -2,8 +2,14 @@ package com.sparta.lh;
 
 public class Program {
     public static void main(String[] args) {
-        int timeOfDay = 21;
-        System.out.println(getGreeting(timeOfDay));
+        Animal myAnimal = new Animal();
+        myAnimal.makeNoise();
+
+        Animal myCat = new Cat();
+        myCat.makeNoise();
+
+        Animal myDog = new Dog();
+        myDog.makeNoise();
     }
 
 //    public static String getGreeting(int timeOfDay) {
