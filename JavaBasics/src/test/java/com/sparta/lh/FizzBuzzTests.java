@@ -32,16 +32,18 @@ public class FizzBuzzTests {
     }
 
     @ParameterizedTest
-    @CsvSource({"2, 2",
-                "4, 4",
-                "7, 7"})
+    @CsvSource({"-2, -2",
+            "-1, -1",
+            "2, 2",
+            "4, 4",
+            "7, 7"})
     void givenInputsNotDivisibleByThreeOrFiveFizzBuzzReturnsThatNumber(int input, String expected) {
         String actual = FizzBuzz.getFizzBuzzFrom(input);
         Assertions.assertEquals(expected, actual);
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {3, 6, 9})
+    @ValueSource(ints = {-6, -3, 3, 6, 9})
     @DisplayName("Given an input of 3, 6, 9, then FizzBuzz should return 'Fizz'")
     void givenAnInputOf3FizzBuzzReturns3(int input) {
         // arrange
@@ -69,13 +71,12 @@ public class FizzBuzzTests {
     }
 
     static Stream<Integer> getFizzBuzzStream() {
-        return Stream.of(15, 30, 45, 60);
+        return Stream.of(15, 30, 45, 60, -15, -30, -45, -60);
     }
 
     static Stream<Integer> getBuzzStream() {
-        return Stream.of(5, 10, 20, 25);
+        return Stream.of(5, 10, 20, 25, -5, -10, -20, -25);
     }
-
 
 
 }
