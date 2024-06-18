@@ -31,10 +31,10 @@ public class ProgramTest {
     }
 
     @Test
-    @DisplayName("Given a time of 18, then the greeting should be 'Good Afternoon'")
+    @DisplayName("Given a time of 18, then the greeting should be 'Good Evening'")
     public void checkThat18GivesGoodAfternoon() {
         int time = 18;
-        String expectedGreeting = "Good Afternoon";
+        String expectedGreeting = "Good Evening";
         String actualGreeting = Program.getGreeting(time);
         Assertions.assertEquals(expectedGreeting, actualGreeting);
     }

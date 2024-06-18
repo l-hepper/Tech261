@@ -21,7 +21,7 @@ public class Program {
 
     public static String getGreeting(int timeOfDay) {
 
-        if (timeOfDay < 5 || timeOfDay > 23) {
+        if (timeOfDay < 5 || timeOfDay >= 24) {
             return "Invalid Input";
         }
 
