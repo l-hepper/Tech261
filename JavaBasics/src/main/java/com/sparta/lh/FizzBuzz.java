@@ -1,7 +1,6 @@
 package com.sparta.lh;
 
 public class FizzBuzz {
-
     public static String getFizzBuzzFrom(int number) {
 
         String fizzBuzzString = Integer.toString(number);

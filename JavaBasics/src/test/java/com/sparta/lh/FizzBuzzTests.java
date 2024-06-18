@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class FizzBuzzTests {
@@ -43,7 +44,7 @@ public class FizzBuzzTests {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-6, -3, 3, 6, 9})
+    @ValueSource(ints = {-9, -6, -3, 3, 6, 9})
     @DisplayName("Given an input of 3, 6, 9, then FizzBuzz should return 'Fizz'")
     void givenAnInputOf3FizzBuzzReturns3(int input) {
         // arrange
@@ -54,8 +55,17 @@ public class FizzBuzzTests {
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("Given an input of 0, then FizzBuzz should return FizzBuzz")
+    void givenAnInputOf0FizzBuzzReturnsFizzBuzz() {
+        String expected = "FizzBuzz";
+        String actual = FizzBuzz.getFizzBuzzFrom(0);
+        Assertions.assertEquals(expected, actual);
+    }
+
     @ParameterizedTest
-    @MethodSource("getFizzBuzzStream")
+    @MethodSource({"getPositiveFizzBuzzStream", "getNegativeFizzBuzzStream"})
+    @DisplayName("Given an input stream of integers of multiple of BOTH 3 and 5, fizzBuzz should return 'Fizz Buzz'")
     void givenAnInputOfFizzBuzzStreamReturnsFizzBuzz(int input) {
         String expected = "FizzBuzz";
         String actual = FizzBuzz.getFizzBuzzFrom(input);
@@ -63,20 +73,27 @@ public class FizzBuzzTests {
     }
 
     @ParameterizedTest
-    @MethodSource("getBuzzStream")
+    @MethodSource({"getBuzzStream", "getNegativeBuzzStream"})
+    @DisplayName("Given an input stream of multiple of 5, fizzBuzz should return 'Buzz'")
     void givenAnInputOfBuzzStreamFizzBuzzReturnsBuzz(int input) {
         String expected = "Buzz";
         String actual = FizzBuzz.getFizzBuzzFrom(input);
         Assertions.assertEquals(expected, actual);
     }
 
-    static Stream<Integer> getFizzBuzzStream() {
-        return Stream.of(15, 30, 45, 60, -15, -30, -45, -60);
+    static Stream<Integer> getPositiveFizzBuzzStream() {
+        return Stream.of(15, 30, 45, 60);
+    }
+
+    static Stream<Integer> getNegativeFizzBuzzStream() {
+        return Stream.of(-15, -30, -45, -60);
     }
 
     static Stream<Integer> getBuzzStream() {
-        return Stream.of(5, 10, 20, 25, -5, -10, -20, -25);
+        return Stream.of(5, 10, 20, 25);
     }
 
-
+    static Stream<Integer> getNegativeBuzzStream() {
+        return Stream.of(-5, -10, -20, -25);
+    }
 }
