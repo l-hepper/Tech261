@@ -13,8 +13,8 @@ package com.sparta.lh;
 public class ArrayOfIntegersToInt {
 
     public static int method(int[] numbers) {
-
         StringBuilder newString = new StringBuilder();
+
         for (int number : numbers) {
             newString.append(number);
         }
