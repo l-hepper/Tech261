@@ -34,6 +34,15 @@ public class ArrayOfIntegersToIntTest {
     }
 
     @Test
+    @DisplayName("Given an array of {0}, ArrayOfIntegersToInt.method() should return 0")
+    void givenAnArrayWithJust0() {
+        int[] array = {0};
+        int expected = 0;
+        int actual = ArrayOfIntegersToInt.method(array);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     @DisplayName("Given an array of {0, 0, 0, 0, 1}, ArrayOfIntegersToInt.method() should return 1")
     void givenAnArrayWithMultipleLeadingZeroes() {
         int[] array = {0, 0, 0, 0, 1};
