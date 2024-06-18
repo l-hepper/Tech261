@@ -26,7 +26,7 @@ public class Program {
         }
 
         String greeting;
-        if (timeOfDay > 18) {
+        if (timeOfDay >= 18) {
             greeting = "Good Evening";
         } else if (timeOfDay >= 12) {
             greeting = "Good Afternoon";
