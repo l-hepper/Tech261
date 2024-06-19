@@ -1,14 +1,8 @@
 package com.sparta.lh;
 
 public class App {
-    public static void main(String[] args) {
 
-
-        int[] numbers = {2, 3, 3, 1, 5, 7};
-        System.out.println(hasThreeIdenticalNeighbours(numbers));
-    }
-
-    private static boolean hasThreeIdenticalNeighbours(int[] numbers) {
+    public static boolean hasThreeIdenticalNeighbours(int[] numbers) {
         if (numbers.length < 3) {
             return false;
         }
