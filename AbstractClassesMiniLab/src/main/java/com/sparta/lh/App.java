@@ -25,6 +25,9 @@ package com.sparta.lh;
 //
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class App {
     public static void main(String[] args) {
 
@@ -47,7 +50,9 @@ public class App {
                 "CSSIP",
                 "251 To-Do Apps");
 
-        System.out.println(liam);
-        System.out.println(bob);
+        List<Trainee> list = new ArrayList<>(List.of(liam, bob));
+        for (Trainee trainee : list) {
+            System.out.println(trainee);
+        }
     }
 }
