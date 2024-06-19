@@ -78,4 +78,13 @@ public class ArrayOfIntegersToIntTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("Given an array of {1, -1, -1}, ArrayOfIntegersToInt.method() should return 111")
+    void givenAnArrayOfNegativeIntegersShouldReturnPositives() {
+        int[] array = {1, -1, -1};
+        int expected = 111;
+        int actual = ArrayOfIntegersToInt.method(array);
+        Assertions.assertEquals(expected, actual);
+    }
+
 }

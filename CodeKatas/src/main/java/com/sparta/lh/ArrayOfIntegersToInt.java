@@ -19,7 +19,7 @@ public class ArrayOfIntegersToInt {
 
         StringBuilder newString = new StringBuilder();
         for (int number : numbers) {
-            newString.append(number);
+            newString.append(Math.abs(number));
         }
 
         return Integer.parseInt(String.valueOf(newString));
