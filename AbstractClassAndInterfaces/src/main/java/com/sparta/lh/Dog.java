@@ -10,4 +10,8 @@ public class Dog extends Animal {
         System.out.println(name + " wants to play with " + super.getName());
     }
 
+    @Override
+    public void drinks() {
+        System.out.println(super.getName() + " is drinking like a dog.");
+    }
 }

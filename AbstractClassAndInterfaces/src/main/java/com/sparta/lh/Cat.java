@@ -8,6 +8,11 @@ public class Cat extends Animal {
 
     @Override
     public void play() {
-        System.out.println(super.getName() + " want to play CAT.");
+        System.out.println(super.getName() + " wants to play like a CAT.");
+    }
+
+    @Override
+    public void drinks() {
+        System.out.println(super.getName() + " is drinking like a cat.");
     }
 }

@@ -10,8 +10,8 @@ package com.sparta.lh;
 //
 //        Use TDD and ask if you need any requirements clarified
 
-public class ArrayOfIntegersToInt {
 
+public class ArrayOfIntegersToInt {
     public static int method(int[] numbers) {
         if (numbers.length == 0) {
             return 0;
@@ -21,7 +21,6 @@ public class ArrayOfIntegersToInt {
         for (int number : numbers) {
             newString.append(Math.abs(number));
         }
-
         return Integer.parseInt(String.valueOf(newString));
     }
 }

@@ -1,6 +1,6 @@
 package com.sparta.lh;
 
-public abstract class Animal {
+public abstract class Animal implements Drinkable {
     private String name;
     private String breed;
     private int age;

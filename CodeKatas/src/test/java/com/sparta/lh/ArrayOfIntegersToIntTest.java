@@ -86,5 +86,4 @@ public class ArrayOfIntegersToIntTest {
         int actual = ArrayOfIntegersToInt.method(array);
         Assertions.assertEquals(expected, actual);
     }
-
 }
