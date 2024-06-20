@@ -4,111 +4,113 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class LongestPalindromeTest {
 
     @Test
-    public void givenSentenceWithOnePalindromeShouldReturnListWithOnePalindrome() {
+    public void givenSentenceWithOnePalindromeShouldReturnSetWithOnePalindrome() {
         String sentence = "i have a racecar";
-        List<String> expected = new ArrayList<>(List.of("racecar"));
-        List<String> actual = LongestPalindrome.getLongestPalindromes(sentence);
+        Set<String> expected = new HashSet<>(Set.of("racecar"));
+        Set<String> actual = new HashSet<>(LongestPalindrome.getLongestPalindromes(sentence));
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void givenAPalindromeWithSpecialCharsShouldReturnListWithOnePalindrome() {
+    public void givenAPalindromeWithSpecialCharsShouldReturnSetWithOnePalindrome() {
         String sentence = "i have a ra!ceca!r";
-        List<String> expected = new ArrayList<>(List.of("racecar"));
-        List<String> actual = LongestPalindrome.getLongestPalindromes(sentence);
+        Set<String> expected = new HashSet<>(Set.of("racecar"));
+        Set<String> actual = new HashSet<>(LongestPalindrome.getLongestPalindromes(sentence));
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void givenThreeLetterPalindromeShouldReturnListWithOnePalindrome() {
+    public void givenThreeLetterPalindromeShouldReturnSetWithOnePalindrome() {
         String sentence = "lol";
-        List<String> expected = new ArrayList<>(List.of("lol"));
-        List<String> actual = LongestPalindrome.getLongestPalindromes(sentence);
+        Set<String> expected = new HashSet<>(Set.of("lol"));
+        Set<String> actual = new HashSet<>(LongestPalindrome.getLongestPalindromes(sentence));
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void givenTwoLetterPalindromeShouldReturnListEmptyList() {
+    public void givenTwoLetterPalindromeShouldReturnEmptySet() {
         String sentence = "ll";
-        List<String> expected = new ArrayList<>();
-        List<String> actual = LongestPalindrome.getLongestPalindromes(sentence);
+        Set<String> expected = new HashSet<>();
+        Set<String> actual = new HashSet<>(LongestPalindrome.getLongestPalindromes(sentence));
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
     public void givenMultiplePalindromesShouldReturnLongestPalindrome() {
         String sentence = "racecar madam lol aa c";
-        List<String> expected = new ArrayList<>(List.of("racecar"));
-        List<String> actual = LongestPalindrome.getLongestPalindromes(sentence);
+        Set<String> expected = new HashSet<>(Set.of("racecar"));
+        Set<String> actual = new HashSet<>(LongestPalindrome.getLongestPalindromes(sentence));
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void givenEmptyStringShouldReturnEmptyList() {
+    public void givenEmptyStringShouldReturnEmptySet() {
         String sentence = "";
-        List<String> expected = new ArrayList<>();
-        List<String> actual = LongestPalindrome.getLongestPalindromes(sentence);
+        Set<String> expected = new HashSet<>();
+        Set<String> actual = new HashSet<>(LongestPalindrome.getLongestPalindromes(sentence));
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void givenNoPalindromeInSentenceShouldReturnEmptyList() {
+    public void givenNoPalindromeInSentenceShouldReturnEmptySet() {
         String sentence = "hello world";
-        List<String> expected = new ArrayList<>();
-        List<String> actual = LongestPalindrome.getLongestPalindromes(sentence);
+        Set<String> expected = new HashSet<>();
+        Set<String> actual = new HashSet<>(LongestPalindrome.getLongestPalindromes(sentence));
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void givenMixedCasePalindromeShouldReturnListWithOnePalindrome() {
+    public void givenMixedCasePalindromeShouldReturnSetWithOnePalindrome() {
         String sentence = "RACECAR madam is really cool";
-        List<String> expected = new ArrayList<>(List.of("racecar"));
-        List<String> actual = LongestPalindrome.getLongestPalindromes(sentence);
+        Set<String> expected = new HashSet<>(Set.of("racecar"));
+        Set<String> actual = new HashSet<>(LongestPalindrome.getLongestPalindromes(sentence));
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
     public void givenMultipleInstancesOfSamePalindromeShouldReturnOne() {
         String sentence = "racecar racecar";
-        List<String> expected = new ArrayList<>(List.of("racecar"));
-        List<String> actual = LongestPalindrome.getLongestPalindromes(sentence);
+        Set<String> expected = new HashSet<>(Set.of("racecar"));
+        Set<String> actual = new HashSet<>(LongestPalindrome.getLongestPalindromes(sentence));
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
     public void givenMultipleInstancesOfSameLengthPalindromeShouldReturnAllLongestPalindromes() {
         String sentence = "llllll aaaaaa bbbbbb cccccc";
-        List<String> expected = new ArrayList<>(List.of("llllll", "aaaaaa", "bbbbbb", "cccccc"));
-        List<String> actual = LongestPalindrome.getLongestPalindromes(sentence);
+        Set<String> expected = new HashSet<>(Set.of("llllll", "aaaaaa", "bbbbbb", "cccccc"));
+        Set<String> actual = new HashSet<>(LongestPalindrome.getLongestPalindromes(sentence));
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
     public void givenMultipleSameLengthPalindromesWithMixedSpecialCharsAndDigits() {
         String sentence = "!ll@llll aa123aaaa bbbbbb## c!!ccccc";
-        List<String> expected = new ArrayList<>(List.of("llllll", "aaaaaa", "bbbbbb", "cccccc"));
-        List<String> actual = LongestPalindrome.getLongestPalindromes(sentence);
+        Set<String> expected = new HashSet<>(Set.of("llllll", "aaaaaa", "bbbbbb", "cccccc"));
+        Set<String> actual = new HashSet<>(LongestPalindrome.getLongestPalindromes(sentence));
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void givenOnlySpecialCharactersShouldReturnEmptyList() {
+    public void givenOnlySpecialCharactersShouldReturnEmptySet() {
         String sentence = "!£$%^&*({}:@?";
-        List<String> expected = new ArrayList<>();
-        List<String> actual = LongestPalindrome.getLongestPalindromes(sentence);
+        Set<String> expected = new HashSet<>();
+        Set<String> actual = new HashSet<>(LongestPalindrome.getLongestPalindromes(sentence));
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
     public void givenTheLongestPalindromeMultipleTimes() {
         String sentence = "aaaaaaaaaa llllllll aaaaaaaaaa";
-        List<String> expected = new ArrayList<>(List.of("aaaaaaaaaa"));
-        List<String> actual = LongestPalindrome.getLongestPalindromes(sentence);
+        Set<String> expected = new HashSet<>(Set.of("aaaaaaaaaa"));
+        Set<String> actual = new HashSet<>(LongestPalindrome.getLongestPalindromes(sentence));
         Assertions.assertEquals(expected, actual);
     }
 }

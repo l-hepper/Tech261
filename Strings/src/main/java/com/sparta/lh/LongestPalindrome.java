@@ -3,30 +3,28 @@ package com.sparta.lh;
 import java.util.*;
 
 public class LongestPalindrome {
-    public static List<String> getLongestPalindromes(String sentence) {
+    public static Set<String> getLongestPalindromes(String sentence) {
 
-        List<String> longestPalindromes = new ArrayList<>();
+        Set<String> longestPalindromes = new HashSet<>();
 
-        String longestPalindrome = "";
-        for (String word : getPreppedWordArray(sentence)) {
+        int longestPalindromeLength = 0;
+        for (String word : prepSentence(sentence).split(" ")) {
 
-            if (PalindromeChecker.isPalindrome(word) && !word.equals(longestPalindrome)) {
-
-                if (word.length() > longestPalindrome.length()) {
+            if (PalindromeChecker.isPalindrome(word)) {
+                if (word.length() > longestPalindromeLength) {
                     longestPalindromes.clear();
-                    longestPalindrome = word;
+                    longestPalindromeLength = word.length();
                     longestPalindromes.add(word);
-                } else if (word.length() == longestPalindrome.length()) {
+                } else if (word.length() == longestPalindromeLength) {
                     longestPalindromes.add(word);
                 }
-
             }
         }
 
         return longestPalindromes;
     }
 
-    private static String[] getPreppedWordArray(String string) {
+    private static String prepSentence(String string) {
         StringBuilder preppedString = new StringBuilder();
 
         for (char c : string.toCharArray()) {
@@ -34,6 +32,6 @@ public class LongestPalindrome {
                 preppedString.append(Character.toLowerCase(c));
             }
         }
-        return preppedString.toString().split(" ");
+        return preppedString.toString();
     }
 }
