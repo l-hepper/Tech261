@@ -53,4 +53,10 @@ public class AppTest {
         int[] numbers = {1, 0, 0, 1, 0};
         assertFalse(App.hasThreeIdenticalNeighbours(numbers));
     }
+
+    @Test
+    public void testNullArray() {
+        int[] numbers = {};
+        assertFalse(App.hasThreeIdenticalNeighbours(numbers));
+    }
 }
