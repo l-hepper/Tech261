@@ -54,9 +54,10 @@ public class AppTest {
         assertFalse(App.hasThreeIdenticalNeighbours(numbers));
     }
 
+    // implement null array handling
     @Test
     public void testNullArray() {
-        int[] numbers = {};
+        int[] numbers = null;
         assertFalse(App.hasThreeIdenticalNeighbours(numbers));
     }
 }
