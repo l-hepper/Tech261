@@ -24,6 +24,18 @@ public class PalindromeCheckerTest {
     }
 
     @Test
+    public void givenMixOfLowerAndUpperCasePalindromeShouldReturnTrue() {
+        String word = "jkoxOKJ";
+        Assertions.assertTrue(PalindromeChecker.isPalindrome(word));
+    }
+
+    @Test
+    public void givenUpperCasePalindromeShouldReturnTrue() {
+        String word = "RACECAR";
+        Assertions.assertTrue(PalindromeChecker.isPalindrome(word));
+    }
+
+    @Test
     public void givenNonPalindromeIsPalindromeShouldReturnFalse() {
         String word = "mountain";
         Assertions.assertFalse(PalindromeChecker.isPalindrome(word));
