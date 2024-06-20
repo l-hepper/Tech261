@@ -36,6 +36,12 @@ public class PalindromeCheckerTest {
     }
 
     @Test
+    public void givePalindromeWithSpacesShouldReturnTrue() {
+        String word = " racecar ";
+        Assertions.assertTrue(PalindromeChecker.isPalindrome(word));
+    }
+
+    @Test
     public void givenNonPalindromeIsPalindromeShouldReturnFalse() {
         String word = "mountain";
         Assertions.assertFalse(PalindromeChecker.isPalindrome(word));
