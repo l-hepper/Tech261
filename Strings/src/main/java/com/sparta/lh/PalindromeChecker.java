@@ -25,7 +25,7 @@ public class PalindromeChecker {
             return false;
         }
 
-        string = string.toLowerCase();
+//        string = string.toLowerCase();
 
         return new StringBuilder(string).reverse().toString().equals(string);
     }
