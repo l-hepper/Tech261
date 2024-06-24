@@ -107,7 +107,7 @@ public class LongestPalindromeTest {
     }
 
     @Test
-    public void givenTheLongestPalindromeMultipleTimes() {
+    public void givenTheLongestPalindromeMultipleTimesSeparated() {
         String sentence = "aaaaaaaaaa llllllll aaaaaaaaaa";
         Set<String> expected = new HashSet<>(Set.of("aaaaaaaaaa"));
         Set<String> actual = new HashSet<>(LongestPalindrome.getLongestPalindromes(sentence));
