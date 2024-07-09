@@ -8,7 +8,8 @@ public class App {
 
         // write a method that checks if a string contains every letter in the alphabet.
         // HINT - characters have ASCII values
-        List<String> names = new ArrayList<>(Arrays.asList("liam", "aa", "bc", "a", "bob", "bobba"));
+        List<String> names1 = new ArrayList<>();
+        names1.add("Liam");
         System.out.println(hasExactlyTwoVowels(names));
 
 //        boolean flag = word.chars().filter(c -> c < 'a' || c > 'z').
@@ -27,7 +28,6 @@ public class App {
     // write a method that will take in a list of name and it will return another list
     // list should contain all the names that contain EXACTLY two vowels
     public static List<String> hasExactlyTwoVowels(List<String> names) {
-
         List<String> functionalList =
                 names.stream()
                         .filter(name ->
@@ -36,6 +36,7 @@ public class App {
                                         .count() == 2
                         )
                         .toList();
+
         return functionalList;
     }
 }
