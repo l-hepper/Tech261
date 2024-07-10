@@ -15,6 +15,12 @@ public class AuthorEntity {
     @Column(name = "full_name", length = 40)
     private String fullName;
 
+    public AuthorEntity() {};
+
+    public AuthorEntity(String fullName) {
+        this.fullName = fullName;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -31,4 +37,11 @@ public class AuthorEntity {
         this.fullName = fullName;
     }
 
+    @Override
+    public String toString() {
+        return "AuthorEntity{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                '}';
+    }
 }

@@ -12,6 +12,5 @@ public class CustomCommandLineRunner implements CommandLineRunner {
     }
     // commandline runner helps to read the log files and print out the information (IT IS NOT THE HANDLER IT IS MUCH LOWER LEVEL)
     // AND IT IS NOT AS SOPHISTICATED AS A HANDLER
-    // this is a custom component - no need to create an object as spring will do it and call the method for you
 
 }
