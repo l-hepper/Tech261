@@ -49,4 +49,11 @@ class AuthorRepositoryTests {
         Optional<AuthorEntity> foundAuthor = repository.findById(author.getId());
         Assertions.assertEquals("Mike Barnes", foundAuthor.get().getFullName());
     }
+
+    @Test
+    void testUpdateFullName() {
+        repository.updateFullName("Liam Hepper");
+        Optional<AuthorEntity> foundAuthor = repository.findById(1);
+        Assertions.assertEquals("Tolkein", foundAuthor.get().getFullName());
+    }
 }

@@ -2,11 +2,14 @@ package com.sparta.lh.springjpa;
 
 import com.sparta.lh.springjpa.entities.AuthorEntity;
 import com.sparta.lh.springjpa.repositories.AuthorRepository;
+import com.sparta.lh.springjpa.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 import java.util.logging.Logger;
 
 @SpringBootApplication
@@ -16,7 +19,6 @@ public class SpringJpaApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringJpaApplication.class, args);
-
     }
 
 
@@ -25,14 +27,17 @@ public class SpringJpaApplication {
     // The order of components (components have a certain level of priority)
     // Spring will prioritise classes before beans
     @Bean // bean represents an object that spring will create. BEAN is the lowest level of dependency injection
-    public CommandLineRunner runner(AuthorRepository repo) {
+    public CommandLineRunner runner(AuthorRepository repo, LibraryService libraryService) {
         // args is the parameter that comes from the run method in CommandLineRunner
         // below here is an anonymous inner class
 //        repo.save(new AuthorEntity("Daniel LaRusso"));
 //        repo.save(new AuthorEntity("Terry Silver"));
         return args -> {
-            System.out.println("Finding: " + repo.findByFullName("Liam Hepper"));
-            logger.info(repo.findAll().toString());
+            List<AuthorEntity> authors = libraryService.getAuthorsWithOneBook();
+            System.out.println("Authors with one book: ");
+            for (AuthorEntity author : authors) {
+                System.out.println(author.getFullName());
+            }
         };
     }
 }
