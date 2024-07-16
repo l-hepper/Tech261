@@ -4,4 +4,5 @@ import com.sparta.lh.springrestproject.entities.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BookRepository extends JpaRepository<Book, Integer> {
+
 }
