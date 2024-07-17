@@ -1,5 +1,6 @@
 package com.sparta.lh.springrestproject.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
@@ -17,8 +18,12 @@ public class Author {
     @Column(name = "full_name", length = 40)
     private String fullName;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Book> books;
+
+    public List<Book> getBooks() {
+        return books;
+    }
 
     public Integer getId() {
         return id;

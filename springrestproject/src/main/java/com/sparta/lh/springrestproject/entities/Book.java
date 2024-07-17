@@ -1,5 +1,7 @@
 package com.sparta.lh.springrestproject.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
@@ -17,6 +19,7 @@ public class Book {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
+    @JsonBackReference
     private Author author;
 
     public Integer getId() {
