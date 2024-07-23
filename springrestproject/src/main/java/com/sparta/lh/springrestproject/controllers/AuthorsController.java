@@ -2,8 +2,13 @@ package com.sparta.lh.springrestproject.controllers;
 
 import com.sparta.lh.springrestproject.entities.Author;
 import com.sparta.lh.springrestproject.repositories.AuthorRepository;
+import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 // @Controller indicates to spring that beans can be created from this class - and that it has common functionality expected of a controller.
 // @RestControler will automatically serialize the object when it is communicated to the client
@@ -31,21 +40,54 @@ public class AuthorsController {
         return authorRepository.findAll();
     }
 
+    @GetMapping("/hateoas/authors")
+    public CollectionModel<EntityModel<Author>> getAuthorsHateoas() {
+        List<EntityModel<Author>> authors = authorRepository.findAll()
+                .stream()
+                .map(
+                        author ->
+                        {
+                            List<Link> bookLinks =
+                                    author.getBooks()
+                                            .stream()
+                                            .map(
+                                                    book -> linkTo(
+                                                            methodOn(BookController.class).getBookById(book.getId())).withRel(book.getTitle()))
+                                            .collect(Collectors.toList());
+                            Link selfLink = linkTo(
+                                    methodOn(AuthorsController.class).getAuthor(author.getId())).withSelfRel();
+                            Link relLink = linkTo(methodOn(AuthorsController.class).getAuthors()).withRel("author");
+                            return EntityModel.of(author, selfLink, relLink).add(bookLinks);
+                        })
+                .collect(Collectors.toList());
+
+        return CollectionModel.of(
+                authors,
+                linkTo(methodOn(AuthorsController.class).getAuthorsHateoas()).withSelfRel());
+    }
+
+
     // keep the controller methods as lightweight as possible - no business rule logic at all
     // it should only get a request and send a response back and that is it
     @GetMapping("/{id}")
-    public ResponseEntity<Author> getAuthor(@PathVariable Integer id) {
+    public ResponseEntity<EntityModel<Author>> getAuthor(@PathVariable Integer id) {
         Author author = authorRepository.findById(id).orElse(null);
+
         if (author == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(author, HttpStatus.OK);
+
+        EntityModel<Author> resource = EntityModel.of(author);
+        resource.add(linkTo(methodOn(AuthorsController.class).getAuthor(id)).withSelfRel());
+        resource.add(linkTo(methodOn(AuthorsController.class).getAuthors()).withRel("all-authors"));
+
+        return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Author> addAuthor(@RequestBody Author author) {
-        authorRepository.save(author);
 
+    @PostMapping
+    public ResponseEntity<Author> addAuthor(@RequestBody @Valid Author author) {
+        authorRepository.save(author);
         URI location = URI.create("http://localhost:8080/api/authors/" + author.getId());
 
 //        return new ResponseEntity<>(author, HttpStatus.CREATED);
@@ -79,7 +121,7 @@ public class AuthorsController {
 //    }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Author> deleteAuthor(@PathVariable Integer id){
+    public ResponseEntity<Author> deleteAuthor(@PathVariable Integer id) {
         if (!authorRepository.existsById(id)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
