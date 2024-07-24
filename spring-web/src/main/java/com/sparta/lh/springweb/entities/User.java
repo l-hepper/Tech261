@@ -8,6 +8,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "users", schema = "library")
 public class User {
+
     @Id
     @GeneratedValue
     private Long id;
