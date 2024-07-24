@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Create a Book</h1>
+
+<section>
+    <form th:action="@{/books/create}" method="post" th:object="${book}">
+        <fieldset>
+            <legend>Create Book</legend>
+
+            <!-- Title Field -->
+            <p>
+                <label for="title">Title: </label>
+                <input type="text" th:field="*{title}" id="title" required="required">
+                <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+            </p>
+
+            <!-- Author First Name Field -->
+            <p>
+                <label for="authorFname">Author First Name: </label>
+                <input type="text" th:field="*{authorFname}" id="authorFname" required="required">
+                <span th:if="${#fields.hasErrors('authorFname')}" th:errors="*{authorFname}"></span>
+            </p>
+
+            <!-- Author Last Name Field -->
+            <p>
+                <label for="authorLname">Author Last Name: </label>
+                <input type="text" th:field="*{authorLname}" id="authorLname" required="required">
+                <span th:if="${#fields.hasErrors('authorLname')}" th:errors="*{authorLname}"></span>
+            </p>
+
+            <!-- Released Year Field -->
+            <p>
+                <label for="releasedYear">Released Year: </label>
+                <input type="number" th:field="*{releasedYear}" id="releasedYear" required="required">
+                <span th:if="${#fields.hasErrors('releasedYear')}" th:errors="*{releasedYear}"></span>
+            </p>
+
+            <!-- Stock Quantity Field -->
+            <p>
+                <label for="stockQuantity">Stock Quantity: </label>
+                <input type="number" th:field="*{stockQuantity}" id="stockQuantity" required="required">
+                <span th:if="${#fields.hasErrors('stockQuantity')}" th:errors="*{stockQuantity}"></span>
+            </p>
+
+            <!-- Pages Field -->
+            <p>
+                <label for="pages">Pages: </label>
+                <input type="number" th:field="*{pages}" id="pages" required="required">
+                <span th:if="${#fields.hasErrors('pages')}" th:errors="*{pages}"></span>
+            </p>
+
+            <p>
+                <button type="submit">Create</button>
+            </p>
+        </fieldset>
+    </form>
+</section>
+<footer th:replace="~{fragments/footer :: personal}"></footer>
+</body>
+</html>

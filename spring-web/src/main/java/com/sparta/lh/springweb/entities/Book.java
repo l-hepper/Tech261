@@ -87,5 +87,4 @@ public class Book {
     public void setPages(Integer pages) {
         this.pages = pages;
     }
-
 }
