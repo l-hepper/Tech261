@@ -4,6 +4,7 @@ import com.sparta.lh.springweb.entities.Book;
 import com.sparta.lh.springweb.repository.BookRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -35,6 +36,7 @@ public class SimpleWebController {
     }
 
     @GetMapping("/books")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public String getBooks(@RequestParam(required = false, defaultValue = "World") String msg, Model model) {
         model.addAttribute("books", bookRepository.findAll());
         model.addAttribute("msg", msg);
@@ -42,12 +44,14 @@ public class SimpleWebController {
     }
 
     @GetMapping("books/create")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String createBookPage(Model model) {
         model.addAttribute("book", new Book());
         return "books/create";
     }
 
     @PostMapping("/books/create")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String createBook(@Valid @ModelAttribute Book book, Errors errors) {
         if (errors.hasErrors()) {
             return "books/create";
