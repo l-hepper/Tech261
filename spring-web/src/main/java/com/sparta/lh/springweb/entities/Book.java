@@ -11,7 +11,7 @@ public class Book {
     @Column(name = "book_id", nullable = false)
     private Integer id;
 
-    @Size(max = 100)
+    @Size(max = 100, message = "Title must be 100 characters or less")
     @Column(name = "title", length = 100)
     private String title;
 

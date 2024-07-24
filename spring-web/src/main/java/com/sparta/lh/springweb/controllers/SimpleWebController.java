@@ -2,9 +2,11 @@ package com.sparta.lh.springweb.controllers;
 
 import com.sparta.lh.springweb.entities.Book;
 import com.sparta.lh.springweb.repository.BookRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,7 +48,10 @@ public class SimpleWebController {
     }
 
     @PostMapping("/books/create")
-    public String createBook(@ModelAttribute Book book, Model model) {
+    public String createBook(@Valid @ModelAttribute Book book, Errors errors) {
+        if (errors.hasErrors()) {
+            return "books/create";
+        }
         bookRepository.save(book);
         return "redirect:/books";
     }
